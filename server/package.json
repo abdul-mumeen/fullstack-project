@@ -2,10 +2,10 @@
 	"name": "graphql-server",
 	"version": "1.0.0",
 	"description": "A graphql server that server info about blockchain contributions.",
-	"main": "index.ts",
+	"main": "dist/index.ts",
 	"scripts": {
 		"tsc": "tsc",
-		"start": "npm run tsc && node ./build/app.js"
+		"start": "npm run tsc && node ./build/index.js"
 	},
 	"dependencies": {
 		"@types/express": "^4.16.1",
