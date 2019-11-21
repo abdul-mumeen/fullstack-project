@@ -3,7 +3,7 @@ import graphqlHTTP from 'express-graphql';
 import { makeExecutableSchema } from 'graphql-tools';
 
 const app: express.Application = express();
-const port = 3000;
+const port = 5000;
 
 let typeDefs: any = [
 	`
@@ -29,5 +29,5 @@ app.use(
 	})
 );
 app.listen(port, () =>
-	console.log(`A simple Node Graphql API listening on port ${port}!`)
+	console.log(`A simple Node Graphql API listening port ${port}!`)
 );
