@@ -1,33 +1,31 @@
-import express from 'express';
-import graphqlHTTP from 'express-graphql';
-import { makeExecutableSchema } from 'graphql-tools';
+import { ApolloServer, gql } from 'apollo-server';
+import contributions from './contributions.json';
 
-const app: express.Application = express();
 const port = 5000;
 
-let typeDefs: any = [
-	`
-  type Query {
-    hello: String
-  }
-`
-];
+const typeDefs: any = gql`
+	type Contribution {
+		address: String
+		currency: String
+		value: Int
+		txid: String
+	}
+	type Query {
+		contributions(currency: String): [Contribution]
+	}
+`;
 
-let helloMessage: String = 'World!';
-
-let resolvers = {
+const resolvers = {
 	Query: {
-		hello: () => helloMessage
+		contributions: (x: any, y: any, z: any) => {
+			console.log(x, y, z, 'arguments');
+			return contributions;
+		}
 	}
 };
 
-app.use(
-	'/graphql',
-	graphqlHTTP({
-		schema: makeExecutableSchema({ typeDefs, resolvers }),
-		graphiql: true
-	})
-);
-app.listen(port, () =>
-	console.log(`A simple Node Graphql API listening port ${port}!`)
+const server = new ApolloServer({ typeDefs, resolvers });
+
+server.listen(port, () =>
+	console.log(`A simple Node Graphql API listening on port ${port}!`)
 );
