@@ -15,23 +15,30 @@ const GET_ICU_CONTRIBUTIONS = gql`
 	}
 `;
 
+const renderLoading = () => {
+	return <div>Loading.....</div>;
+};
+
+const renderEmptyState = () => {
+	return <div>Empty State.....</div>;
+};
+
+const renderDashboard = (contributions: any[]) => {
+	return <div>Dashboard.....</div>;
+};
+
 const App: React.FC = () => {
 	return (
 		<Query query={GET_ICU_CONTRIBUTIONS}>
 			{({ data, loading }: { data: any; loading: boolean }) => {
-				{
-					console.log(data, 'data', loading);
-				}
-				if (loading) {
-					return <div>Loading ...</div>;
-				}
+				const isEmptyData = !loading && !data.contributions;
 				return (
 					<div className="App">
-						<header className="App-header">
-							{data.contributions.map((c: any) => (
-								<div>{JSON.stringify(c)}</div>
-							))}
-						</header>
+						{loading
+							? renderLoading()
+							: isEmptyData
+							? renderEmptyState()
+							: renderDashboard(data.contributions)}
 					</div>
 				);
 			}}
