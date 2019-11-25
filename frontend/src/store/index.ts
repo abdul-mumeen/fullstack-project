@@ -1,10 +1,5 @@
 import { createStore } from 'redux';
 import rootReducer from '../reducers';
 
-const initialState: any = {
-	contributions: [],
-	filteredContributions: []
-};
-
-const store = createStore(rootReducer, initialState);
+const store = createStore(rootReducer);
 export default store;

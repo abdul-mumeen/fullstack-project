@@ -4,8 +4,16 @@ import { Query } from 'react-apollo';
 import { connect } from 'react-redux';
 import { setContributions } from './actions';
 import Dashboard from './components/dashboard/Dashboard';
-
+import { IContribution } from './interfaces';
 import './App.css';
+
+interface IApp {
+	setContributions: (contributions: IContribution[]) => void;
+}
+
+interface IApiData {
+	contributions?: IContribution[] | [];
+}
 
 const GET_ICU_CONTRIBUTIONS = gql`
 	{
@@ -18,23 +26,26 @@ const GET_ICU_CONTRIBUTIONS = gql`
 	}
 `;
 
-const renderLoading = () => {
+const renderLoading = (): React.ReactNode => {
 	return <div>Loading.....</div>;
 };
 
-const renderEmptyState = () => {
+const renderEmptyState = (): React.ReactNode => {
 	return <div>Empty State.....</div>;
 };
 
-const renderDashboard = (contributions: any[], setContributions: any) => {
+const renderDashboard = (
+	contributions: IContribution[],
+	setContributions: (contributions: IContribution[]) => void
+): React.ReactNode => {
 	setContributions(contributions);
 	return <Dashboard />;
 };
 
-const App: React.FC<any> = ({ setContributions }) => {
+const App: React.FC<IApp> = ({ setContributions }) => {
 	return (
 		<Query query={GET_ICU_CONTRIBUTIONS}>
-			{({ data, loading }: { data: any; loading: boolean }) => {
+			{({ data, loading }: { data: IApiData; loading: boolean }) => {
 				const isEmptyData = !loading && !data.contributions;
 				return (
 					<div className="App">
@@ -42,7 +53,7 @@ const App: React.FC<any> = ({ setContributions }) => {
 							? renderLoading()
 							: isEmptyData
 							? renderEmptyState()
-							: renderDashboard(data.contributions, setContributions)}
+							: renderDashboard(data.contributions || [], setContributions)}
 					</div>
 				);
 			}}
@@ -51,7 +62,7 @@ const App: React.FC<any> = ({ setContributions }) => {
 };
 
 const mapDispatchToProps = (dispatch: any) => ({
-	setContributions: (contributions: any) => {
+	setContributions: (contributions: IContribution[]) => {
 		dispatch(setContributions(contributions));
 	}
 });

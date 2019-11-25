@@ -1,12 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updateFilteredContributions } from '../../actions';
+import { IContribution, IState } from '../../interfaces';
 
-const filterCons = (contributions: any[]) => {
+interface IDashboard {
+	contributions: IContribution[];
+	filteredContributions: IContribution[];
+	updateFilteredContributions: (contributions: IContribution[]) => void;
+}
+
+const filterCons = (contributions: IContribution[]): IContribution[] | [] => {
 	return contributions.filter(con => con.currency === 'BTC');
 };
 
-const Dashboard: React.FC<any> = ({
+const Dashboard: React.FC<IDashboard> = ({
 	contributions,
 	filteredContributions,
 	updateFilteredContributions
@@ -27,13 +34,13 @@ const Dashboard: React.FC<any> = ({
 	);
 };
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: IState) => ({
 	contributions: state.contributions,
 	filteredContributions: state.filteredContributions
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-	updateFilteredContributions: (contributions: any) => {
+	updateFilteredContributions: (contributions: IContribution[]) => {
 		dispatch(updateFilteredContributions(contributions));
 	}
 });

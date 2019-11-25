@@ -1,11 +1,15 @@
-export const setContributions = (initialContributions: any) => ({
+import { IContribution } from '../interfaces';
+
+export const setContributions = (initialContributions: IContribution[]) => ({
 	type: 'SET_CONTRIBUTIONS',
 	payload: {
-		initialContributions
+		contributions: initialContributions
 	}
 });
 
-export const updateFilteredContributions = (contributions: any) => ({
+export const updateFilteredContributions = (
+	contributions: IContribution[]
+) => ({
 	type: 'UPDATE_FILTERED_CONTRIBUTIONS',
 	payload: {
 		contributions
