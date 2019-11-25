@@ -2,16 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateFilteredContributions } from '../../actions';
 import { IContribution, IState } from '../../interfaces';
+import Header from '../Header/Header';
 
 interface IDashboard {
 	contributions: IContribution[];
 	filteredContributions: IContribution[];
 	updateFilteredContributions: (contributions: IContribution[]) => void;
 }
-
-const filterCons = (contributions: IContribution[]): IContribution[] | [] => {
-	return contributions.filter(con => con.currency === 'BTC');
-};
 
 const Dashboard: React.FC<IDashboard> = ({
 	contributions,
@@ -20,13 +17,11 @@ const Dashboard: React.FC<IDashboard> = ({
 }) => {
 	return (
 		<div className="App">
-			<button
-				onClick={() => updateFilteredContributions(filterCons(contributions))}
-			>
-				Click Me!
-			</button>
-			{/* <Header className="App-header"></Header>
-			<Analytics></Analytics> */}
+			<Header
+				contributions={contributions}
+				updateFilteredContributions={updateFilteredContributions}
+			/>
+			{/* <Analytics></Analytics>  */}
 			{filteredContributions.map((con: any) => {
 				return <div>{JSON.stringify(con)}</div>;
 			})}
