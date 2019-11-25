@@ -3,7 +3,7 @@ import rootReducer from '../reducers';
 
 const initialState: any = {
 	contributions: [],
-	displayedContributions: []
+	filteredContributions: []
 };
 
 const store = createStore(rootReducer, initialState);

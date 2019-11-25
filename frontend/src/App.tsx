@@ -1,6 +1,9 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
+import { connect } from 'react-redux';
+import { setContributions } from './actions';
+import Dashboard from './components/dashboard/Dashboard';
 
 import './App.css';
 
@@ -23,11 +26,12 @@ const renderEmptyState = () => {
 	return <div>Empty State.....</div>;
 };
 
-const renderDashboard = (contributions: any[]) => {
-	return <div>Dashboard.....</div>;
+const renderDashboard = (contributions: any[], setContributions: any) => {
+	setContributions(contributions);
+	return <Dashboard />;
 };
 
-const App: React.FC = () => {
+const App: React.FC<any> = ({ setContributions }) => {
 	return (
 		<Query query={GET_ICU_CONTRIBUTIONS}>
 			{({ data, loading }: { data: any; loading: boolean }) => {
@@ -38,7 +42,7 @@ const App: React.FC = () => {
 							? renderLoading()
 							: isEmptyData
 							? renderEmptyState()
-							: renderDashboard(data.contributions)}
+							: renderDashboard(data.contributions, setContributions)}
 					</div>
 				);
 			}}
@@ -46,4 +50,10 @@ const App: React.FC = () => {
 	);
 };
 
-export default App;
+const mapDispatchToProps = (dispatch: any) => ({
+	setContributions: (contributions: any) => {
+		dispatch(setContributions(contributions));
+	}
+});
+
+export default connect(null, mapDispatchToProps)(App);

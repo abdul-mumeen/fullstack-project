@@ -1,8 +1,15 @@
 const rootReducer = (state = {}, action: any) => {
 	switch (action.type) {
-		case 'SAMPLE_ACTION':
+		case 'SET_CONTRIBUTIONS':
 			return {
-				result: action.payload
+				...state,
+				contributions: action.payload.initialContributions,
+				filteredContributions: action.payload.initialContributions
+			};
+		case 'UPDATE_FILTERED_CONTRIBUTIONS':
+			return {
+				...state,
+				filteredContributions: action.payload.contributions
 			};
 		default:
 			return state;
