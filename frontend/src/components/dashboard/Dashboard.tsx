@@ -4,6 +4,8 @@ import { updateFilteredContributions } from '../../actions';
 import { IContribution, IState } from '../../interfaces';
 import Header from '../Header/Header';
 
+import '../../App.scss';
+
 interface IDashboard {
 	contributions: IContribution[];
 	filteredContributions: IContribution[];
@@ -16,12 +18,12 @@ const Dashboard: React.FC<IDashboard> = ({
 	updateFilteredContributions
 }) => {
 	return (
-		<div className="App">
+		<div className="container">
 			<Header
 				contributions={contributions}
 				updateFilteredContributions={updateFilteredContributions}
 			/>
-			{/* <Analytics></Analytics>  */}
+			{/* <Analytics></Analytic>  */}
 			{filteredContributions.map((con: any) => {
 				return <div>{JSON.stringify(con)}</div>;
 			})}

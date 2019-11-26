@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { setContributions } from './actions';
 import Dashboard from './components/dashboard/Dashboard';
 import { IContribution } from './interfaces';
-import './App.css';
+import './App.scss';
 
 interface IApp {
 	setContributions: (contributions: IContribution[]) => void;

@@ -44,7 +44,7 @@ const Header: React.FC<IHeader> = ({
 	updateFilteredContributions
 }) => {
 	return (
-		<div className="App">
+		<div>
 			<button
 				onClick={() =>
 					filterContributions({
