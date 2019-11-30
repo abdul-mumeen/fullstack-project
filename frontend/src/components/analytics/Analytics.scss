@@ -16,18 +16,14 @@
 	min-height: 24rem;
 }
 
-.right-chart-container {
+.chart-container {
 	width: 100%;
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.right-container {
 	margin-right: 1rem;
-	background-color: green;
-}
-
-.left-chart-container {
-	width: 100%;
-	background-color: blue;
-}
-
-.bottom-chart-container {
-	width: 100%;
-	background-color: orchid;
 }
