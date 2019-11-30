@@ -26,3 +26,8 @@ export interface IUpdateFilteredContrributionAction {
 	type: typeof UPDATE_FILTERED_CONTRIBUTIONS;
 	payload: IContributionsPayload;
 }
+
+export interface IChart {
+	contributions: IContribution[];
+	colors: string[];
+}

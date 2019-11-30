@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-	LineChart,
-	Line,
+	BarChart,
+	Bar,
 	XAxis,
 	YAxis,
 	CartesianGrid,
@@ -11,7 +11,7 @@ import {
 
 import { IContribution, IChart } from '../../../interfaces';
 
-const getLineChartData = (contributions: IContribution[]) => {
+const getBarChartData = (contributions: IContribution[]) => {
 	let userCount = 0;
 	const currencies: string[] = [];
 	let allUsersData: {
@@ -26,9 +26,9 @@ const getLineChartData = (contributions: IContribution[]) => {
 				currentUserData[contribution.currency] =
 					parseInt(
 						currentUserData[contribution.currency.toString()].toString()
-					) + contribution.value;
+					) + 1;
 			} else {
-				currentUserData[contribution.currency] = contribution.value;
+				currentUserData[contribution.currency] = 1;
 				!currencies.includes(contribution.currency) &&
 					currencies.push(contribution.currency);
 			}
@@ -38,8 +38,7 @@ const getLineChartData = (contributions: IContribution[]) => {
 				name: `Contributor ${userCount}`,
 				address: contribution.address
 			};
-			allUsersData[contribution.address][contribution.currency] =
-				contribution.value;
+			allUsersData[contribution.address][contribution.currency] = 1;
 			!currencies.includes(contribution.currency) &&
 				currencies.push(contribution.currency);
 		}
@@ -48,12 +47,12 @@ const getLineChartData = (contributions: IContribution[]) => {
 	return { data: Object.values(allUsersData), currencies };
 };
 
-const LineChartComponent: React.FC<IChart> = ({ contributions, colors }) => {
-	const { data, currencies } = getLineChartData(contributions);
+const BarChartComponent: React.FC<IChart> = ({ contributions, colors }) => {
+	const { data, currencies } = getBarChartData(contributions);
 
 	return (
-		<LineChart
-			width={500}
+		<BarChart
+			width={800}
 			height={300}
 			data={data}
 			margin={{
@@ -69,16 +68,14 @@ const LineChartComponent: React.FC<IChart> = ({ contributions, colors }) => {
 			<Tooltip />
 			<Legend />
 			{currencies.map((currency, index) => (
-				<Line
+				<Bar
 					key={index}
-					type="monotone"
 					dataKey={currency}
-					stroke={colors[index % colors.length]}
-					activeDot={{ r: 4 + index * 2 }}
+					fill={colors[index % colors.length]}
 				/>
 			))}
-		</LineChart>
+		</BarChart>
 	);
 };
 
-export default LineChartComponent;
+export default BarChartComponent;
