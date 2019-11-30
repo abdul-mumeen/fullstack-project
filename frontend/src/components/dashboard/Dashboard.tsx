@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { updateFilteredContributions } from '../../actions';
 import { IContribution, IState } from '../../interfaces';
 import Header from '../Header/Header';
+import Analytics from '../analytics/Analytics';
 
 import '../../App.scss';
 
@@ -23,10 +24,13 @@ const Dashboard: React.FC<IDashboard> = ({
 				contributions={contributions}
 				updateFilteredContributions={updateFilteredContributions}
 			/>
-			{/* <Analytics></Analytic>  */}
-			{filteredContributions.map((con: any) => {
-				return <div>{JSON.stringify(con)}</div>;
-			})}
+			{!!filteredContributions.length ? (
+				<Fragment>
+					<Analytics filteredContributions={filteredContributions} />
+				</Fragment>
+			) : (
+				<span>No contributions matching your filter.</span>
+			)}
 		</div>
 	);
 };
