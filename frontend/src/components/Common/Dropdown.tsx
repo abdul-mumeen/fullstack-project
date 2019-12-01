@@ -9,7 +9,7 @@ const Dropdown: React.FC<IDropdown> = ({
 	selectedItem
 }) => {
 	return (
-		<div>
+		<div className="dropdown">
 			<FormControl>
 				<NativeSelect value={selectedItem} onChange={handleChange}>
 					<option value="">None</option>
