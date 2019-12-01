@@ -17,8 +17,7 @@ const typeDefs: any = gql`
 
 const resolvers = {
 	Query: {
-		contributions: (x: any, y: any, z: any) => {
-			console.log(x, y, z, 'arguments');
+		contributions: () => {
 			return contributions;
 		}
 	}
