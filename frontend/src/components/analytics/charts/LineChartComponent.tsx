@@ -9,10 +9,10 @@ import {
 	Legend
 } from 'recharts';
 
-import { IContribution, IChart } from '../../../interfaces';
+import { IContribution, IChart, IChartData } from '../../../interfaces';
 
-const getLineChartData = (contributions: IContribution[]) => {
-	let userCount = 0;
+const getLineChartData = (contributions: IContribution[]): IChartData => {
+	let userCount: number = 0;
 	const currencies: string[] = [];
 	let allUsersData: {
 		[key: string]: {

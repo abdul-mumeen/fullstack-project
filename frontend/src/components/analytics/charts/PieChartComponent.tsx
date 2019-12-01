@@ -1,8 +1,14 @@
 import React from 'react';
 import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
-import { IContribution, IChart } from '../../../interfaces';
+import {
+	IContribution,
+	IChart,
+	IChartComponentData
+} from '../../../interfaces';
 
-const getPieChartData = (contributions: IContribution[]) => {
+const getPieChartData = (
+	contributions: IContribution[]
+): IChartComponentData[] => {
 	let allCurrencyData: {
 		[key: string]: {
 			[key: string]: number | string;

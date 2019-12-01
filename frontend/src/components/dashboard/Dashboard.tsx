@@ -1,17 +1,11 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { updateFilteredContributions } from '../../actions';
-import { IContribution, IState } from '../../interfaces';
+import { IContribution, IState, IDashboard } from '../../interfaces';
 import Header from '../Header/Header';
 import Analytics from '../analytics/Analytics';
 
 import '../../App.scss';
-
-interface IDashboard {
-	contributions: IContribution[];
-	filteredContributions: IContribution[];
-	updateFilteredContributions: (contributions: IContribution[]) => void;
-}
 
 const Dashboard: React.FC<IDashboard> = ({
 	contributions,

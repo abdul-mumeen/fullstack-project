@@ -12,7 +12,7 @@ const initialState: IState = {
 const rootReducer = (
 	state: IState = initialState,
 	action: ISetContrributionAction | IUpdateFilteredContrributionAction
-) => {
+): IState => {
 	switch (action.type) {
 		case 'SET_CONTRIBUTIONS':
 			return {

@@ -9,9 +9,9 @@ import {
 	Legend
 } from 'recharts';
 
-import { IContribution, IChart } from '../../../interfaces';
+import { IContribution, IChart, IChartData } from '../../../interfaces';
 
-const getBarChartData = (contributions: IContribution[]) => {
+const getBarChartData = (contributions: IContribution[]): IChartData => {
 	let userCount = 0;
 	const currencies: string[] = [];
 	let allUsersData: {
@@ -67,9 +67,9 @@ const BarChartComponent: React.FC<IChart> = ({ contributions, colors }) => {
 			<YAxis />
 			<Tooltip />
 			<Legend />
-			{currencies.map((currency, index) => (
+			{currencies.map((currency: string, index: number) => (
 				<Bar
-					key={index}
+					key={`${currency} ${index}`}
 					dataKey={currency}
 					fill={colors[index % colors.length]}
 				/>

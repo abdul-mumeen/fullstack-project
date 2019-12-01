@@ -3,7 +3,7 @@ import Slider from '@material-ui/core/Slider';
 import { ISlider } from '../../interfaces';
 import './index.scss';
 
-const valuetext = (value: any) => {
+const valuetext = (value: number): string => {
 	return `${value}°C`;
 };
 

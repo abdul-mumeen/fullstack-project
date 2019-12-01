@@ -39,9 +39,9 @@ export interface IHeader {
 
 export interface IFilter {
 	contributions: IContribution[];
-	updateFilteredContributions: any;
-	currency: string | null;
-	value: number[] | null;
+	updateFilteredContributions: (contributions: IContribution[]) => void;
+	currency: string;
+	value: number[];
 }
 
 export interface ISlider {
@@ -54,4 +54,19 @@ export interface IDropdown {
 	items: string[];
 	selectedItem: string;
 	handleChange: (event: any) => void;
+}
+
+export interface IChartComponentData {
+	[key: string]: number | string;
+}
+
+export interface IChartData {
+	data: IChartComponentData[];
+	currencies: string[];
+}
+
+export interface IDashboard {
+	contributions: IContribution[];
+	filteredContributions: IContribution[];
+	updateFilteredContributions: (contributions: IContribution[]) => void;
 }
