@@ -31,3 +31,21 @@ export interface IChart {
 	contributions: IContribution[];
 	colors: string[];
 }
+
+export interface IHeader {
+	contributions: IContribution[];
+	updateFilteredContributions: (contributions: IContribution[]) => void;
+}
+
+export interface IFilter {
+	contributions: IContribution[];
+	updateFilteredContributions: any;
+	currency: string | null;
+	value: number[] | null;
+}
+
+export interface ISlider {
+	minMax: number[];
+	value: number[];
+	handleChange: (event: any, value: number | number[]) => void;
+}
