@@ -49,3 +49,9 @@ export interface ISlider {
 	value: number[];
 	handleChange: (event: any, value: number | number[]) => void;
 }
+
+export interface IDropdown {
+	items: string[];
+	selectedItem: string;
+	handleChange: (event: any) => void;
+}
