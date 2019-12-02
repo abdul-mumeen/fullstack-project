@@ -82,7 +82,7 @@ const Header: React.FC<IHeader> = ({
 
 	return (
 		<div className="header-container">
-			<Typography>ICU Contributions Analysis</Typography>
+			<Typography>ICO Contributions Analysis</Typography>
 			<div></div>
 			<div className="filter-column">
 				<Typography>Filter by currency</Typography>
