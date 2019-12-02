@@ -1,0 +1,15 @@
+FROM node:10
+LABEL maintainer="olasodeadeyemi@gmail.com"
+LABEL description="A Node GraphQL server"
+
+# set work directory
+WORKDIR /server
+
+COPY ./server /server/
+
+RUN npm install
+
+EXPOSE 5000
+
+# Start server
+CMD ["npm", "start"]

@@ -1,0 +1,15 @@
+FROM node:10
+LABEL maintainer="olasodeadeyemi@gmail.com"
+LABEL description="A React client"
+
+# set work directory
+WORKDIR /frontend
+
+COPY ./frontend /frontend
+
+RUN npm install
+
+EXPOSE 3000
+
+# Start client
+CMD ["npm", "start"]

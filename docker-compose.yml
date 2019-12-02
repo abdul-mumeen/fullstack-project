@@ -1,0 +1,25 @@
+version: '3'
+services:
+  fullstack_frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    volumes:
+      - ./frontend/:/fullstack-frontend
+    ports:
+      - '3000:3000'
+    container_name: fullstack_frontend
+    links:
+      - 'fullstack_server:server'
+    depends_on:
+      - fullstack_server
+
+  fullstack_server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    volumes:
+      - ./server/:/fullstack-server
+    ports:
+      - '5000:5000'
+    container_name: fullstack_server
